@@ -14,15 +14,12 @@ import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
-    private String word;
-    private char wordLetters[];
-    private char lettersGuessed[] = new char[26];
-    private int leftGuesses;
-
     private TextView guessesView;
     private TextView guessedView;
     private TextView wordView;
     private EditText enterView;
+
+    private Gameplay game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +33,8 @@ public class GameActivity extends AppCompatActivity {
         wordView = (TextView) findViewById(R.id.word);
         enterView = (EditText) findViewById(R.id.enterLetter);
 
-        prepareGame();
+        game = new EvilGameplay();
+        setText();
     }
 
     public void guessLetter(View view) {
@@ -46,79 +44,23 @@ public class GameActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
 
-            char letter = guess.charAt(0);
-            boolean guessed = false;
-            for(char temp : lettersGuessed) {
-                if(temp == letter) {
-                    guessed = true;
-                }
-            }
+            char letter = guess.toUpperCase().charAt(0);
 
-            if(guessed)  {
+            if(game.guessed(letter)) {
                 Toast.makeText(getApplicationContext(), "Already guessed this letter",
                         Toast.LENGTH_SHORT).show();
             } else {
-                if(word.indexOf(letter) < 0) {
-                    leftGuesses -= 1;
-                    Toast.makeText(getApplicationContext(), "There are no "+letter+"'s in the word",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    for(int i = 0; i < word.length(); i++)//it checks every letter
-                    {
-                        if(word.charAt(i) == letter)
-                        {
-                            wordLetters[i] = letter;//the dash is removed and the letter is placed
-                        }
-
-                    }
-                }
-                for(int i = 0; i < lettersGuessed.length; i++) {
-                    if(lettersGuessed[i] == '\0'){
-                        lettersGuessed[i] = letter;
-                        break;
-                    }
-                }
+                game.guess(letter, getApplicationContext());
             }
         }
         setText();
-    }
-
-    private void prepareGame() {
-        leftGuesses = 8;
-        selectWord();
-        setText();
-    }
-
-    private void selectWord() {
-        word = "sinterklaas";
-        wordLetters = new char[word.length()];
-        for(int i = 0; i < word.length(); i++) {
-            wordLetters[i] = '-';
-        }
     }
 
     private void setText() {
-        if(lettersGuessed[0] == '\0') {
-            guessedView.setText("Nothing Guessed.");
-        } else {
-            String letters = "";
-            for(int i = 0; i < lettersGuessed.length; i++) {
-                if(lettersGuessed[i] == '\0') {
-                    break;
-                } else {
-                    letters += "-"+lettersGuessed[i];
-                }
-            }
-            guessedView.setText(letters);
-        }
 
-        guessesView.setText("You have "+ leftGuesses+" left.");
-
-        String wordstripes = "";
-        for(int i = 0; i < wordLetters.length; i++) {
-            wordstripes += wordLetters[i]+" ";
-        }
-        wordView.setText(wordstripes);
+        guessedView.setText(game.guessedString());
+        guessesView.setText(game.guessesString());
+        wordView.setText(game.wordString());
     }
 
     @Override
