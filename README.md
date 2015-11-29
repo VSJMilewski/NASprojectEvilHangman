@@ -1,6 +1,6 @@
 # Evil Hangman
-Victor Milewski (victormilewski@gmail.com)
-University of Amsterdam, 10529136
+Victor Milewski (victormilewski@gmail.com)  
+University of Amsterdam, 10529136  
 Class Native App Studio  
 
 This is an android app where a user can play a fun and different version of the classic hangman!
