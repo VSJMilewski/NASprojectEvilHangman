@@ -3,7 +3,7 @@ Victor Milewski (victormilewski@gmail.com)
 University of Amsterdam, 10529136  
 Class Native App Studio  
 
-This is an android app where a user can play a fun and different version of the classic hangman!
+This is an android app where a user can play a fun and different version of the classic hangman! In Evil Hangman you are not guessing one word. The app takes all the words from a single length in his memory. After every guess subsets are created from possible letter positions, and the largest subset contains the final word... Mwahahah!
 
 ## App's Features
 Here is a list of features that are in this app:
