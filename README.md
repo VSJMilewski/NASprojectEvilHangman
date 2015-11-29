@@ -26,7 +26,7 @@ When a user decides to play in landscape mode, the layout is changed. At on side
 In the highscore screen there are two buttons. One is to show the highscores from evil hangman, and the other is to show the highscores of the classic game. 
 
 ### Done and ToDo
-I still have to describe the full project in the readme and I have to write de design document. 
-In This version the basic gameplay is created. For now there is only a single word. The player can guess letters and reports messages of correct or wrong guesses. The remaining guesses are written down, the part of the word guessed so far and the guessed letters.  
+I still have to add sketches of the users experience and I have to write de design document. 
+In This version two gameplays,classic and evil, are created. The user cannot select between the gameplays. For now there are only a couple of words. The player can guess letters and the app reports messages if it was correct or false. The remaining guesses are written down, the part of the word guessed so far and the guessed letters. All the classes and activities are created to implement the highscore, only the scores need to be written down. 
 
-I have to make a game ending. I didn't use any designs in this version. I have to order the code into different classes, create settings to change types of game and add highscore lists. 
+I have to make a game ending. I didn't use any designs in this version, so i have to make a nice layout. I have to add the settings menu to change types of game and add highscore lists. 
