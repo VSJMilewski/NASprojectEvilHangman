@@ -1,8 +1,9 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.XmlResourceParser;
 import android.widget.Toast;
-
 import java.util.Random;
 
 /**
@@ -15,19 +16,54 @@ public class Gameplay {
 
     protected String word;
     protected char wordLetters[];
-    protected char lettersGuessed[] = new char[26];
+    protected char lettersGuessed[];
     protected int leftGuesses;
+    protected int score;
 
     protected HangmanLexicon lexicon;
 
-    public Gameplay() {
-        lexicon = new HangmanLexicon();
-        leftGuesses = 8;
-        selectWord();
+    protected int setGuesses;
+    protected int setLength;
+
+    public Gameplay(XmlResourceParser xrp,int length, int guesses) {
+
+        setLength = length;
+        setGuesses = guesses;
+
+        score = 0;
+        lexicon = new HangmanLexicon(xrp);
+        resetGuesses();
+    }
+
+    public Gameplay(String w, char guessed[], char letters[], int left, int sc, int set) {
+
+        setLength = letters.length;
+        setGuesses = set;
+        score = sc;
+        leftGuesses = left;
+        lettersGuessed = guessed;
+        wordLetters = letters;
+        word = w;
+    }
+
+    public void resetGuesses() {
+        lettersGuessed = new char[26];
+        leftGuesses = setGuesses;
     }
 
     public void selectWord() {
-        word = lexicon.getWord(rgen.nextInt(lexicon.getWordCount()));
+        do {
+            word = lexicon.getWord(rgen.nextInt(lexicon.getWordCount()));
+        } while (word.length() != setLength);
+        wordLetters = new char[word.length()];
+        for(int i = 0; i < word.length(); i++) {
+            wordLetters[i] = '-';
+        }
+    }
+
+    public void selectWord(String w) {
+
+        word = w;
         wordLetters = new char[word.length()];
         for(int i = 0; i < word.length(); i++) {
             wordLetters[i] = '-';
@@ -96,5 +132,9 @@ public class Gameplay {
             }
         }
         addGuessedLetter(letter);
+    }
+
+    public void addScore(int i) {
+        score += i;
     }
 }

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".GameActivity">
+    <item android:id="@+id/action_highscores"
+        android:title="@string/action_highscores"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_newgame"
+        android:title="@string/action_newgame"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

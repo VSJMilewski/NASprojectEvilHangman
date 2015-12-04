@@ -1,6 +1,8 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.XmlResourceParser;
 import android.widget.Toast;
 
 /**
@@ -8,28 +10,13 @@ import android.widget.Toast;
  */
 public class GoodGameplay extends Gameplay {
 
-    public GoodGameplay() {
-        lexicon = new HangmanLexicon();
-        leftGuesses = 8;
+    public GoodGameplay(XmlResourceParser xrp, int length, int guesses) {
+        super(xrp, length, guesses);
         selectWord();
     }
 
-    @Override
-    public void guess(char letter, Context context) {
-        if(word.indexOf(letter) < 0) {
-            leftGuesses -= 1;
-            Toast.makeText(context, "There are no " + letter + "'s in the word, from good",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            for(int i = 0; i < word.length(); i++)//it checks every letter
-            {
-                if(word.charAt(i) == letter)
-                {
-                    wordLetters[i] = letter;//the dash is removed and the letter is placed
-                }
-
-            }
-        }
-        addGuessedLetter(letter);
+    public GoodGameplay(String w, char guessed[], char letters[], int left, int sc, int set) {
+        super(w,guessed,letters,left,sc,set);
     }
+
 }

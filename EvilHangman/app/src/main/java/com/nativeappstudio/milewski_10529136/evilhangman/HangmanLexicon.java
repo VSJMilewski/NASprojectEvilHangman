@@ -1,8 +1,15 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
+import android.app.Activity;
+import android.content.res.XmlResourceParser;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,38 +20,47 @@ import java.util.Scanner;
  */
 public class HangmanLexicon {
 
-    /**an array list is created where al the words can be stored in.*/
-    private ArrayList<String> lexicon = new ArrayList<String>();
+    /** An array list is created where al the words can be stored in. */
+    private List<String> lexicon = new ArrayList<>();
 
-    /**in this variables the number of words is counted.*/
+    /** In this variables the number of words is counted. */
     private int lines = 0;
 
-    /**here the list is read into the araylist. first the file is imported. this file is put in a scanner so you can read the lines. */
-    public HangmanLexicon() {
+    /** In this variable the size of the longest word is stored. */
+    private static int longest = 0;
+
+    /***/
+    public HangmanLexicon(XmlResourceParser xrp) {
         try {
-            File f = new File("HangmanLexicon.txt");
-            Scanner s = new Scanner(f);
-            while (s.hasNext())//it stots is there are no lines anymore
-            {
-                lexicon.add(s.next().toUpperCase());//the word is put in the arraylist
-                lines++;//one is added to the count of words
-            }
-            s.close();
+            lexicon = WordlistXmlParser.parse(xrp);
+            lines = lexicon.size();
+            setLongest();
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch(FileNotFoundException e) {
-            lexicon.add("KEES");
-            lexicon.add("KAAS");
-            lexicon.add("PIET");
-            lexicon.add("SOEP");
-            lexicon.add("POEP");
-            lexicon.add("GOED");
-            lexicon.add("RAAK");
-            lines += 7;
+
+    }
+
+    /** Finds the length of the longest word in the lexicon. */
+    private void setLongest() {
+        for(String word : lexicon) {
+            if(word.length() > longest) {
+                longest = word.length();
+            }
         }
     }
+
     /** Returns the number of words in the lexicon. */
     public int getWordCount() {
         return lines;
+    }
+
+    /** returns the length of the longest word in the lexicon. */
+    public static int getLongest() {
+        return longest;
     }
 
     /** Returns the word at the specified index. The words stand in the arraylist.  */
