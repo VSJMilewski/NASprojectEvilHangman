@@ -1,40 +1,27 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
 /**
- * Created by victo on 27-11-2015.
+ * Created by victor on 27-11-2015.
+ * Here are all the variables stored for a single score.
  */
 public class Score {
+    /**The number of points won in the game*/
     private int points;
-    private String name;
-    private int wordLength;
-    private String gameType;
 
-    public Score() {
-        points = 0;
-        name = "<No Name>";
-        wordLength = 0;
-        gameType = "evil";
-    }
+    /**The name of the player who achieved this score*/
+    private String name;
+
+    /**The length of the words for the game where the score was achieved on*/
+    private int wordLength;
+
+    /**The game type for where the score was achieved on*/
+    private String gameType;
 
     public Score(String type) {
         points = 0;
         name = "<No Name>";
         wordLength = 0;
         gameType = type;
-    }
-
-    public Score(int points) {
-        this.points = points;
-        name = "<No Name>";
-        wordLength = 0;
-        gameType = "evil";
-    }
-
-    public Score(int points, String name) {
-        this.points = points;
-        this.name = name;
-        wordLength = 0;
-        gameType = "evil";
     }
 
     public Score(int points, String name, int length, String type) {

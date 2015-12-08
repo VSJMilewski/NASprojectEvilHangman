@@ -1,12 +1,10 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
-import android.widget.Toast;
 
 /**
- * Created by victo on 24-11-2015.
+ * Created by victor on 24-11-2015.
+ * Good gameplay is exactly the same as normal gameplay
  */
 public class GoodGameplay extends Gameplay {
 
@@ -15,6 +13,9 @@ public class GoodGameplay extends Gameplay {
         selectWord();
     }
 
+    /**
+     * on construction replaces all the variables with the progress so far
+     */
     public GoodGameplay(String w, char guessed[], char letters[], int left, int sc, int set) {
         super(w,guessed,letters,left,sc,set);
     }

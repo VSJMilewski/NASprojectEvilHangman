@@ -1,7 +1,6 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +11,21 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Created by victo on 24-11-2015.
+ * Created by victor on 24-11-2015.
+ * Extends the default gameplay.
+ * In evil gameplay the system takes all the words from the given length.
+ * When the user guesses a letter the system checks all the possible
+ * combinations of locations the letter can be in. It chooses the combination
+ * where the most words fit in.
+ * This way the possible words it can be gets smaller after every guess until
+ * only one word remains which the user has to guess.
  */
 public class EvilGameplay extends Gameplay {
 
+    /**The array with possible words it can be*/
     public static ArrayList<String> words;
+
+    /**Here is the powerset for the given wordlength stored*/
     private List<Set<Integer>> powerset;
 
     public EvilGameplay(XmlResourceParser xrp, int length, int guesses) {
@@ -25,11 +34,15 @@ public class EvilGameplay extends Gameplay {
         createWords();
         selectWord(words.get(0));
 
+        // an original set is created with a range for the length of the word
         Set<Integer> set = new HashSet<>();
         for(int i = 0; i < setLength; i++){
             set.add(i);
         }
+
+        //the powerset for the original set is created
         powerset = powerSet(set);
+        //the powerset is sorted from small sets to large sets
         Collections.sort(powerset, new Comparator<Set<?>>() {
             @Override
             public int compare(Set<?> o1, Set<?> o2) {
@@ -38,11 +51,39 @@ public class EvilGameplay extends Gameplay {
         });
     }
 
+    /**
+     * on construction replaces all the variables with the progress so far
+     * @param w         The array with remaining possible words
+     * @param guessed   The guessed letters so far
+     * @param letters   The word array in bars and guessed letters
+     * @param left      The number of left guesses
+     * @param sc        The score of the player so far
+     * @param set       The number of guesses from the settings
+     */
     public EvilGameplay(ArrayList<String> w, char guessed[], char letters[], int left, int sc, int set) {
         super(w.get(0),guessed,letters,left,sc,set);
         words = w;
+
+        // an original set is created with a range for the length of the word
+        Set<Integer> s = new HashSet<>();
+        for(int i = 0; i < setLength; i++){
+            s.add(i);
+        }
+
+        //the powerset for the original set is created
+        powerset = powerSet(s);
+        //the powerset is sorted from small sets to large sets
+        Collections.sort(powerset, new Comparator<Set<?>>() {
+            @Override
+            public int compare(Set<?> o1, Set<?> o2) {
+                return Integer.valueOf(o1.size()).compareTo(o2.size());
+            }
+        });
     }
 
+    /**
+     * All the words from the lexicon with the chosen length are placed in a list
+     */
     private void createWords() {
         words = new ArrayList<>();
         for(int i = 0; i < lexicon.getWordCount(); i++) {
@@ -53,14 +94,41 @@ public class EvilGameplay extends Gameplay {
         }
     }
 
+    /**
+     * a letter is guessed and the remaining word list is divided and the letter is handled
+     * @param letter    The letter that is guessed
+     * @param context   The context of the current activity
+     */
     @Override
     public void guess(char letter, Context context) {
+        ArrayList<ArrayList<String>> newLists = createPowerLists(letter);
+
+        //choose the largest set
+        words.clear();
+        for(ArrayList<String> list : newLists) {
+            if(list.size() > words.size()) {
+                words = list;
+            }
+        }
+        //the word is changed and the guess further handled on the ordinary way
+        word = words.get(0);
+        super.guess(letter,context);
+    }
+
+    /**
+     * divides all the possible words into the different powersets
+     * for the guessed letter.
+     * @param letter    The letter that is guessed
+     * @return          An arraylist where the words are divided over arraylists according to
+     *                  the locations of the letters
+     */
+    private ArrayList<ArrayList<String>> createPowerLists(char letter) {
         ArrayList<ArrayList<String>> newLists = new ArrayList<>();
         ArrayList<String> temp;
 
-
         for(Set<Integer> comb : powerset) {
             temp = new ArrayList<>();
+            //test for each word if it belongs to this combination
             for(String w : words) {
                 boolean add = true;
                 for(int i = 0; i < setLength; i++) {
@@ -78,7 +146,7 @@ public class EvilGameplay extends Gameplay {
                         }
                     }
                 }
-                //all the given positions had the right character and the word is added
+                //the word belongs to this combination and is added
                 if(add){
                     temp.add(w);
                 }
@@ -89,6 +157,7 @@ public class EvilGameplay extends Gameplay {
                 break;
             }
         }
+
         /*
         int range = powerset.size();
         for(int i = 0; i < range; i++) {
@@ -110,22 +179,21 @@ public class EvilGameplay extends Gameplay {
             }
         }*/
 
-        //choose the largest set
-        words.clear();
-        for(ArrayList<String> list : newLists) {
-            if(list.size() > words.size()) {
-                words = list;
-            }
-        }
-        word = words.get(0);
-
-        super.guess(letter,context);
+        return newLists;
     }
 
-    /** Function to create powersets:
+
+    /**
+     * Creates the powerset from a given set.
+     * if a given set   = [1,2,3]
+     * the power set    = [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
+     * @param originalSet   A set with all the elements that need to be in the powerset
+     * @return  The created powerset
+     *
      * Created by: João Silva
      * Copied from: http://stackoverflow.com/questions/1670862/obtaining-a-powerset-of-a-set-in-java
-     *              - first answer */
+     *              - first answer
+     */
     public static List<Set<Integer>> powerSet(Set<Integer> originalSet) {
         Set<Set<Integer>> sets = new HashSet<>();
         if (originalSet.isEmpty()) {

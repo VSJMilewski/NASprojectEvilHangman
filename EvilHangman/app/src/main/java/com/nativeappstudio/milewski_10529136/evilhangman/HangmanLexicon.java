@@ -1,16 +1,10 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
-import android.app.Activity;
 import android.content.res.XmlResourceParser;
-
 import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by victor on 24-11-2015.
