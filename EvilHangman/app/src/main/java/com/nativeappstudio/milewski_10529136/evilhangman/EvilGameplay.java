@@ -194,7 +194,7 @@ public class EvilGameplay extends Gameplay {
      * Copied from: http://stackoverflow.com/questions/1670862/obtaining-a-powerset-of-a-set-in-java
      *              - first answer
      */
-    public static List<Set<Integer>> powerSet(Set<Integer> originalSet) {
+    private static List<Set<Integer>> powerSet(Set<Integer> originalSet) {
         Set<Set<Integer>> sets = new HashSet<>();
         if (originalSet.isEmpty()) {
             sets.add(new TreeSet<Integer>());

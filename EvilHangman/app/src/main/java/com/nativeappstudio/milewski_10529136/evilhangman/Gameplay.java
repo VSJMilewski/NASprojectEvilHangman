@@ -74,7 +74,7 @@ public class Gameplay {
     /**
      * The variables for the guesses are reset for a new game
      */
-    public void resetGuesses() {
+    private void resetGuesses() {
         lettersGuessed = new char[26];
         leftGuesses = setGuesses;
     }
@@ -165,7 +165,7 @@ public class Gameplay {
      * Adds the given letter to the array of guessed letters
      * @param letter    The guessed letter
      */
-    protected void addGuessedLetter(char letter) {
+    private void addGuessedLetter(char letter) {
         for(int i = 0; i < lettersGuessed.length; i++) {
             //Place the letter in the first empty spot
             if(lettersGuessed[i] == '\0'){
