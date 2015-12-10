@@ -7,7 +7,7 @@
 | leftGuesses                                                             |
 | score                                                                   |
 | lexicon                                                                 |
-
+|                                                                         |
 | setGuesses                                                              |
 | setLength                                                               |
 | selectWord                                                              |
