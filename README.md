@@ -5,6 +5,13 @@ Class Native App Studio
 
 This is an android app where a user can play a fun and different version of the classic hangman! In Evil Hangman you are not guessing one word. The app takes all the words from a single length in his memory. After every guess subsets are created from possible letter positions, and the largest subset contains the final word... Mwahahah!
 
+## How to Use
+1. Go to releases
+2. Download the latest release
+3. Unzip the file
+4. Load the folder 'EvilHangman with android studio
+5. Run the app
+
 ## App's Features
 Here is a list of features that are in this app:
 * The app uses a large wordlist to select words from. This makes it unlikely that you see the same word over and over again.
