@@ -20,13 +20,16 @@ When the game user starts the game for the first time, he is immediatly in the g
 In the middle of the screen is an empty space where a gallow will be drawn. By every wrong guess a part of the gallow is added. Below the gallow some bars are shown, to display the length of the word and which letters are guessed. At the start no letters are guessed, but further along in the game the bars get replaced by the letters.  
 
 Below the word, there is place to add a list of guessed letters. After every guess, wrong or correct, the list increased in size.  
+![Alt text](/images/GameActivity.jpg)
 
 When a user decides to play in landscape mode, the layout is changed. At on side of the screen will be the gallow and at the other side will be the word and the list of letters.  
 
-In the highscore screen there are two buttons. One is to show the highscores from evil hangman, and the other is to show the highscores of the classic game. 
+In the highscore screen there is a switch. If it is on, the highscores from evil hangman are shown. If it is of, the highscores of the classic game are shown. 
+![Alt text](/images/HighscoreActivity.jpg)
 
-### Done and ToDo
-I still have to add sketches of the users experience and I have to write de design document. 
-In This version two gameplays,classic and evil, are created. The user cannot select between the gameplays. For now there are only a couple of words. The player can guess letters and the app reports messages if it was correct or false. The remaining guesses are written down, the part of the word guessed so far and the guessed letters. All the classes and activities are created to implement the highscore, only the scores need to be written down. 
+In the settings screen there are three options. The first option is to change the type of the game, evil or good. This is done with a switch. There are two sliders, one is for the wordlength and the other one is to set the number of guesses. 
+![Alt text](/images/SettingsActivity.jpg)
 
-I have to make a game ending. I didn't use any designs in this version, so i have to make a nice layout. I have to add the settings menu to change types of game and add highscore lists. 
+### ToDo
+I didn't use any designs in this version, so i have to make a nice layout. 
+Some bugfixing is needed
