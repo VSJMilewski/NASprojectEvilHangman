@@ -112,6 +112,7 @@ The Score class is where the information is stored for each finished game. It ke
 
 ## SettingActivity
 ![Alt text](/images/SettingsActivity.png)
+
 In the settings activity the user can change the game settings for the next game. In this activity are four controllers. The first is again the menu button in the menu bar. In here are three options. Go back to the game, start a new game or go to the highscores. 
 
 The other controllers are for changing the settings. The first one is a switch, this changes the game type between evil an good. The second one is a slider that changes number of guesses a user has. And the last one is again a slider that changes the length the words will have in the game. 
