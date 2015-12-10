@@ -21,17 +21,17 @@ In the middle of the screen is an empty space where a gallow will be drawn. By e
 
 Below the word, there is place to add a list of guessed letters. After every guess, wrong or correct, the list increased in size. 
 
-![Alt text](/images/GameActivity.jpg)
+![Alt text](/images/GameActivity.png)
 
 When a user decides to play in landscape mode, the layout is changed. At on side of the screen will be the gallow and at the other side will be the word and the list of letters.  
 
 In the highscore screen there is a switch. If it is on, the highscores from evil hangman are shown. If it is of, the highscores of the classic game are shown. 
 
-![Alt text](/images/HighscoreActivity.jpg)
+![Alt text](/images/HighscoreActivity.png)
 
 In the settings screen there are three options. The first option is to change the type of the game, evil or good. This is done with a switch. There are two sliders, one is for the wordlength and the other one is to set the number of guesses. 
 
-![Alt text](/images/SettingsActivity.jpg)
+![Alt text](/images/SettingsActivity.png)
 
 ### ToDo
 I didn't use any designs in this version, so i have to make a nice layout. 
