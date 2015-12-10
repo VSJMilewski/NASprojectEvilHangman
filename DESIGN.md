@@ -2,6 +2,7 @@
 
 ## GameActivity
 ![Alt text](/images/GameActivity.png)
+
 In the game activity the game is played. On the screen are 3 controllers the user can use. The first one is the edit text. The user can fill in a letter he wants to guess. The guess can be submitted by pressing the 'guess' button. 
 
 In the menu bar there is the menu button. This will give the user three options. Go to the highscores, go to the settings or start a new game. 
@@ -71,6 +72,7 @@ The WordlistXmlParser reads in all the words. It goes through the xml file by re
 
 ## HighscoreActivity
 ![Alt text](/images/HighscoreActivity.png)
+
 There are two ways you get in the highscore activity. One is by going there from the menu button(as explained above), and the other is by finishing a game. When you finish a game, a new score is passed along with an intent. If it is a new highscore, you get a dialog where you fill in your name. If you got in the activity with the button, nothing happens. 
 
 In this activity there are two controllers. One is again the menu button in the menu bar. There are three options, start a new game, go to settings or go back to the game. The other controller is a switch. With this switch the user can select to see the highscores from Good gametype or from Evil gametype. They will be displayed in a table. 
@@ -107,3 +109,9 @@ The other way to add a score is by using newScoreRead(score). This immediatly pl
 | getGameType: returns string, the game type it was won on, evil or good             |
 
 The Score class is where the information is stored for each finished game. It keeps the points won in this game, the name of the user who won it, the length of the words and on which gametype was played. 
+
+## SettingActivity
+![Alt text](/images/SettingsActivity.png)
+In the settings activity the user can change the game settings for the next game. In this activity are four controllers. The first is again the menu button in the menu bar. In here are three options. Go back to the game, start a new game or go to the highscores. 
+
+The other controllers are for changing the settings. The first one is a switch, this changes the game type between evil an good. The second one is a slider that changes number of guesses a user has. And the last one is again a slider that changes the length the words will have in the game. 
