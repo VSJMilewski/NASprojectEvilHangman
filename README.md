@@ -12,6 +12,11 @@ This is an android app where a user can play a fun and different version of the 
 4. Load the folder 'EvilHangman with android studio
 5. Run the app
 
+##### Warning
+When the game type is evil, a powerset is created depending on the wordlength. If the wordlength is chosen to long it might look if the app is broken. Start with smaller lengths and build it up. 
+
+If it takes to long and you don't want to wait, restart the app. If the length was largen then 14, it is reset after one game to a low value. 
+
 ## App's Features
 Here is a list of features that are in this app:
 * The app uses a large wordlist to select words from. This makes it unlikely that you see the same word over and over again.
@@ -40,6 +45,3 @@ In the settings screen there are three options. The first option is to change th
 
 ![Alt text](/images/SettingsActivity.png)
 
-### ToDo
-I didn't use any designs in this version, so i have to make a nice layout. 
-Some bugfixing is needed
