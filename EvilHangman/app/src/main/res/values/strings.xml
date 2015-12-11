@@ -4,12 +4,13 @@
     <string name="action_highscores">Highscores</string>
     <string name="action_newgame">New Game</string>
 
+    <string name="editGuess">Enter a Letter: </string>
+    <string name="buttonGuess">Guess</string>
+
     <string name="gameover">Game Over!</string>
     <string name="end">You didn\'t guess the word. \n The word was:&#160; </string>
-    <string name="end_high">You didn\'t guess the word. \n The word was:&#160; </string>
-    <string name="end_evil">You didn\'t guess the word, MWAHAHAHAH! \n The word was:&#160; </string>
-    <string name="end_high_evil">You didn\'t guess the word, MWAHAHAHAH!  \n The word was:&#160; </string>
     <string name="end_button">To Highscores</string>
+
     <string name="new_high">You have a new HighScore! \n Enter your name here:</string>
 
     <string name="guessed">Word Guessed!</string>

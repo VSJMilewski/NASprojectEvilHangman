@@ -13,33 +13,24 @@
     tools:showIn="@layout/activity_highscore"
     tools:context="com.nativeappstudio.milewski_10529136.evilhangman.HighscoreActivity">
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="Evil"
-        android:textOn="Good"
-        android:id="@+id/scoreType" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scoreType" />
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/switchState"/>
+
+    </LinearLayout>
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scoreTable">
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name:"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Word Length:"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Points:"/>
-        </TableRow>
     </TableLayout>
 </LinearLayout>

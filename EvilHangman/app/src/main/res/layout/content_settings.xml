@@ -23,23 +23,15 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_type"
             android:textSize="16sp"/>
-        <RadioGroup
-            android:layout_width="wrap_content"
+        <Switch
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Evil"
-                android:id="@+id/radioEvil"
-                android:onClick="onRadioButtonClicked"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Good"
-                android:id="@+id/radioGood"
-                android:onClick="onRadioButtonClicked"/>
-        </RadioGroup>
+            android:id="@+id/scoreType" />
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/setSwitchState"
+            android:textSize="16sp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -51,10 +43,15 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_length"
             android:textSize="16sp"/>
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+        <SeekBar
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
             android:id="@+id/length_picker" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16sp"
+            android:id="@+id/length_num"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -66,10 +63,15 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_guesses"
             android:textSize="16sp"/>
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+        <SeekBar
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
             android:id="@+id/guesses_picker"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="16sp"
+            android:id="@+id/guesses_num"/>
     </LinearLayout>
 
 </LinearLayout>

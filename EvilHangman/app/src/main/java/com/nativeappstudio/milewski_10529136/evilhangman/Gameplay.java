@@ -41,13 +41,13 @@ public class Gameplay {
     protected int setLength;
 
 
-    public Gameplay(XmlResourceParser xrp,int length, int guesses) {
+    public Gameplay(int length, int guesses, HangmanLexicon lex) {
 
         setLength = length;
         setGuesses = guesses;
 
         score = 0;
-        lexicon = new HangmanLexicon(xrp);
+        lexicon = lex;
         resetGuesses();
     }
 
@@ -60,7 +60,7 @@ public class Gameplay {
      * @param sc        The score of the player so far
      * @param set       The number of guesses from the settings
      */
-    public Gameplay(String w, char guessed[], char letters[], int left, int sc, int set) {
+    public Gameplay(String w, char guessed[], char letters[], int left, int sc, int set, HangmanLexicon lex) {
 
         setLength = letters.length;
         setGuesses = set;
@@ -69,12 +69,13 @@ public class Gameplay {
         lettersGuessed = guessed;
         wordLetters = letters;
         word = w;
+        lexicon = lex;
     }
 
     /**
      * The variables for the guesses are reset for a new game
      */
-    private void resetGuesses() {
+    public void resetGuesses() {
         lettersGuessed = new char[26];
         leftGuesses = setGuesses;
     }
@@ -120,7 +121,13 @@ public class Gameplay {
                 if(lettersGuessed[i] == '\0') {
                     break;
                 } else {
-                    letters += "-"+lettersGuessed[i];
+                    if(i == 0) {
+                        letters += lettersGuessed[i];
+                    } else if(i == 15) {
+                        letters += "\n" + lettersGuessed[i];
+                    } else {
+                        letters += "-" + lettersGuessed[i];
+                    }
                 }
             }
             return letters;
@@ -206,6 +213,6 @@ public class Gameplay {
      * @param i The won number of points
      */
     public void addScore(int i) {
-        score += i;
+        score = score + i;
     }
 }

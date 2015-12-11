@@ -12,12 +12,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_game"
     tools:context=".GameActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guessesLeft"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:id="@+id/hangImg"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,16 +35,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/guessedLetters"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter a Letter: "
-        android:id="@+id/enterLetter"/>
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/editGuess"
+            android:id="@+id/enterLetter"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guess"
-        android:onClick="guessLetter"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonGuess"
+            android:onClick="guessLetter"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -8,16 +8,16 @@ import android.content.res.XmlResourceParser;
  */
 public class GoodGameplay extends Gameplay {
 
-    public GoodGameplay(XmlResourceParser xrp, int length, int guesses) {
-        super(xrp, length, guesses);
+    public GoodGameplay(int length, int guesses, HangmanLexicon lex) {
+        super(length, guesses, lex);
         selectWord();
     }
 
     /**
      * on construction replaces all the variables with the progress so far
      */
-    public GoodGameplay(String w, char guessed[], char letters[], int left, int sc, int set) {
-        super(w,guessed,letters,left,sc,set);
+    public GoodGameplay(String w, char guessed[], char letters[], int left, int sc, int set,HangmanLexicon lex) {
+        super(w,guessed,letters,left,sc,set,lex);
     }
 
 }

@@ -32,6 +32,9 @@ public class HighscoreActivity extends AppCompatActivity {
     /**The switch that tells if the good or the evil scores need to be shown*/
     private Switch GoodEvil;
 
+    /**The textview that displays the state of the switch*/
+    private TextView stateSwitch;
+
     /**The table where the highscores are printed in*/
     private TableLayout scoreTable;
 
@@ -49,7 +52,8 @@ public class HighscoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //test if a new score is passed
         if(intent.hasExtra("gamescore")) {
-            int points = intent.getIntExtra("gamescore", 0);
+            final int points = intent.getIntExtra("gamescore", 0);
+            intent.removeExtra("gamescore");
             String type = intent.getStringExtra("gametype");
             //if it is a new highscore the player can add their name for the score in an dialog
             if (newHighScore(points, type)) {
@@ -64,7 +68,7 @@ public class HighscoreActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String text = nameScore.getText().toString();
-                        addScore(text);
+                        addScore(text,points);
                     }
                 });
                 dialog.setCancelable(false);
@@ -74,25 +78,33 @@ public class HighscoreActivity extends AppCompatActivity {
         }
 
         scoreTable = (TableLayout) findViewById(R.id.scoreTable);
+        stateSwitch = (TextView) findViewById(R.id.switchState);
         GoodEvil = (Switch) findViewById(R.id.scoreType);
         GoodEvil.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 fillTable(isChecked);
+                if(isChecked){
+                    stateSwitch.setText("Evil");
+                } else {
+                    stateSwitch.setText("Good");
+                }
             }
         });
-
+        if(GoodEvil.isChecked()){
+            stateSwitch.setText("Evil");
+        } else {
+            stateSwitch.setText("Good");
+        }
         fillTable(GoodEvil.isChecked());
-
     }
 
     /**
      * adds the new score to the highscores with all the needed infromation from the intent
      * @param name  The name of the user who got this score
      */
-    public void addScore(String name) {
+    public void addScore(String name,int points) {
         Intent intent = getIntent();
-        int points = intent.getIntExtra("gamescore", 0);
         String type = intent.getStringExtra("gametype");
         int length = intent.getIntExtra("wordlength", 4);
         highScores.newScore(new Score(points, name, length, type));
@@ -167,7 +179,7 @@ public class HighscoreActivity extends AppCompatActivity {
         //the first table row is filled with the column titles
         TableRow titles = new TableRow(this);
         titles.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT));
+                TableRow.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT));
 
         //add the name to the row
         TextView n = new TextView(this);
@@ -203,7 +215,7 @@ public class HighscoreActivity extends AppCompatActivity {
         for(Score score : scores) {
             TableRow topScore = new TableRow(this);
             topScore.setLayoutParams(new TableRow.LayoutParams(
-                    TableRow.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT));
+                    TableRow.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT));
             //add the name to the row
             TextView name = new TextView(this);
             name.setLayoutParams(new TableRow.LayoutParams(
@@ -269,6 +281,7 @@ public class HighscoreActivity extends AppCompatActivity {
             finish();
         } else if(id == R.id.action_newgame) {
             Intent intent = new Intent(this,GameActivity.class);
+            intent.putExtra("new",true);
             startActivity(intent);
             finish();
         }

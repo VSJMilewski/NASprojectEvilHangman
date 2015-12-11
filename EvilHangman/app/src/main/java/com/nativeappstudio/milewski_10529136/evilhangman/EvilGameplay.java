@@ -1,7 +1,6 @@
 package com.nativeappstudio.milewski_10529136.evilhangman;
 
 import android.content.Context;
-import android.content.res.XmlResourceParser;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,11 +27,10 @@ public class EvilGameplay extends Gameplay {
     /**Here is the powerset for the given wordlength stored*/
     private List<Set<Integer>> powerset;
 
-    public EvilGameplay(XmlResourceParser xrp, int length, int guesses) {
+    public EvilGameplay(int length, int guesses, HangmanLexicon lex) {
 
-        super(xrp, length, guesses);
+        super(length, guesses, lex);
         createWords();
-        selectWord(words.get(0));
 
         // an original set is created with a range for the length of the word
         Set<Integer> set = new HashSet<>();
@@ -60,8 +58,8 @@ public class EvilGameplay extends Gameplay {
      * @param sc        The score of the player so far
      * @param set       The number of guesses from the settings
      */
-    public EvilGameplay(ArrayList<String> w, char guessed[], char letters[], int left, int sc, int set) {
-        super(w.get(0),guessed,letters,left,sc,set);
+    public EvilGameplay(ArrayList<String> w, char guessed[], char letters[], int left, int sc, int set, HangmanLexicon lex) {
+        super(w.get(0),guessed,letters,left,sc,set,lex);
         words = w;
 
         // an original set is created with a range for the length of the word
@@ -92,6 +90,12 @@ public class EvilGameplay extends Gameplay {
                 words.add(w);
             }
         }
+        selectWord(words.get(0));
+    }
+
+    @Override
+    public void selectWord() {
+        createWords();
     }
 
     /**
@@ -157,27 +161,6 @@ public class EvilGameplay extends Gameplay {
                 break;
             }
         }
-
-        /*
-        int range = powerset.size();
-        for(int i = 0; i < range; i++) {
-            temp = new ArrayList<>();
-            newLists.add(temp);
-        }
-        for(String w : words) {
-            boolean add = true;
-            int start = 0;
-            int loc = w.indexOf(letter,start);
-            Set<Integer> tmp = new HashSet<>();
-            while(loc >= 0) {
-                tmp.add(loc);
-            }
-            for(int i = 0; i < range; i++){
-                if(tmp.equals(powerset.get(i))) {
-                    newLists.get(i).add(w);
-                }
-            }
-        }*/
 
         return newLists;
     }
